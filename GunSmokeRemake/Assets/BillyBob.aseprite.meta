@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638685013318493464
+  platformSettingsDirtyTick: 638686068672093692
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -149,9 +149,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
+      x: 2
       y: 35
-      width: 16
+      width: 20
       height: 25
     spriteID: 3940e45e8c870fe4eba0612374ad5f3d
     spriteBone: []
@@ -169,9 +169,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 33
+      x: 32
       y: 35
-      width: 18
+      width: 20
       height: 24
     spriteID: af0b1959211603e47b7c8d58e4137361
     spriteBone: []
@@ -189,10 +189,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 60
+      x: 59
       y: 35
-      width: 18
-      height: 24
+      width: 20
+      height: 25
     spriteID: efbe93a711c6bf940b81c4bf63da1b76
     spriteBone: []
     spriteOutline: []
@@ -209,10 +209,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 88
+      x: 87
       y: 35
-      width: 18
-      height: 24
+      width: 20
+      height: 25
     spriteID: 51ffbb9de88eba74f813ba50c86d9bd1
     spriteBone: []
     spriteOutline: []
@@ -229,10 +229,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 115
+      x: 114
       y: 35
-      width: 18
-      height: 23
+      width: 20
+      height: 25
     spriteID: e5d8212e20df5c243884e5d3c5a8e9de
     spriteBone: []
     spriteOutline: []
@@ -249,10 +249,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 172
+      x: 171
       y: 35
-      width: 18
-      height: 24
+      width: 20
+      height: 25
     spriteID: 55493781163fcfa44bffda1afefb6022
     spriteBone: []
     spriteOutline: []
@@ -269,10 +269,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 145
+      x: 144
       y: 35
-      width: 18
-      height: 23
+      width: 20
+      height: 25
     spriteID: a1c69a59e5029dd4da1e81a784aa417e
     spriteBone: []
     spriteOutline: []
@@ -289,9 +289,9 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 199
+      x: 198
       y: 35
-      width: 18
+      width: 20
       height: 25
     spriteID: 715972a192e475d49bda74064c5c4423
     spriteBone: []
@@ -309,10 +309,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 226
+      x: 225
       y: 35
-      width: 19
-      height: 24
+      width: 20
+      height: 25
     spriteID: 05c50feb1eb1c844d95468a05f2162c2
     spriteBone: []
     spriteOutline: []
@@ -331,8 +331,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 251
       y: 35
-      width: 19
-      height: 24
+      width: 20
+      height: 25
     spriteID: 2c58c16349f6fc646a1a868fe9c969fc
     spriteBone: []
     spriteOutline: []
@@ -351,7 +351,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 287
       y: 35
-      width: 19
+      width: 20
       height: 20
     spriteID: 966c03b5a768586458247c1bb2548d69
     spriteBone: []
@@ -369,10 +369,10 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 281
+      x: 282
       y: 4
-      width: 31
-      height: 24
+      width: 30
+      height: 25
     spriteID: da70c53e36af7794d978cd7026c16e55
     spriteBone: []
     spriteOutline: []
@@ -382,7 +382,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: BillyBulletLeft
+  - name: BillyBulletLeft1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -391,8 +391,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 7
       y: 16
-      width: 16
-      height: 5
+      width: 4
+      height: 4
     spriteID: 2bac59802a249664dacfc515bcc57ec5
     spriteBone: []
     spriteOutline: []
@@ -402,7 +402,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: BillyBulletForward
+  - name: BillyBulletForward1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -411,7 +411,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 33
       y: 16
-      width: 18
+      width: 3
       height: 6
     spriteID: 56d6bf3045dbf644e8c1dee40b30b1e8
     spriteBone: []
@@ -422,7 +422,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
-  - name: BillyBulletRight
+  - name: BillyBulletRight1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -431,9 +431,69 @@ ScriptedImporter:
       serializedVersion: 2
       x: 61
       y: 16
-      width: 16
+      width: 4
       height: 5
     spriteID: b0900220f8b5ef44d9dd2fbd110e8634
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: BillyBulletLeft2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 19
+      y: 17
+      width: 4
+      height: 4
+    spriteID: 68059783afcf21e44afce8156fe2f3f8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: BillyBulletForward2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 48
+      y: 16
+      width: 3
+      height: 6
+    spriteID: cd618f082b5bd354b89e226929c87bdd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: BillyBulletRight2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 73
+      y: 16
+      width: 4
+      height: 4
+    spriteID: bdb27e8fa64942a4692a56ad65675d07
     spriteBone: []
     spriteOutline: []
     vertices: []
