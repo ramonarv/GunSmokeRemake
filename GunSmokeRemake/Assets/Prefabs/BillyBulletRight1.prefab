@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 698797149809270502}
   - component: {fileID: 6370471957644842808}
   - component: {fileID: 6570328847317996075}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BillyBulletRight1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

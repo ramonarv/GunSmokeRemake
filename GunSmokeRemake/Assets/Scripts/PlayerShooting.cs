@@ -20,11 +20,13 @@ public class PlayerShooting : MonoBehaviour
     Transform[] leftFirepoints;
     Transform[] rightFirepoints;
 
+
+    // variables for input buffer
     private bool fire1Pressed = false;
     private bool fire2Pressed = false;
     private float fire1LastTime;
     private float fire2LastTime;
-    private float fireBufferTime = 0.2f;
+    private float fireBufferTime = 0.15f;
     private float clickTime;
 
 
@@ -53,6 +55,7 @@ public class PlayerShooting : MonoBehaviour
             fire2LastTime = Time.time;
         }
         
+        // Buffer timers for more consistent input detection (especially for LMB + RMB)
         clickTime = Mathf.Abs(fire1LastTime - fire2LastTime);
         bool bufferOver = (clickTime >= fireBufferTime);
 
@@ -100,10 +103,20 @@ public class PlayerShooting : MonoBehaviour
     {
         for (int i = 0; i < leftFirepoints.Length; i++)
         {
-            Quaternion rotation = Rotate(60, rightFirepoints[i].rotation);
-            GameObject bullet = Instantiate(bulletLeftPrefab, leftFirepoints[i].position, leftFirepoints[i].rotation);
-            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-            bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            if (i == 0)
+            {
+                Quaternion rotation = Rotate(60, rightFirepoints[i].rotation);
+                GameObject bullet = Instantiate(bulletLeftPrefab, leftFirepoints[i].position, leftFirepoints[i].rotation);
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            }
+            else
+            {
+                Quaternion rotation = Rotate(45, rightFirepoints[i].rotation);
+                GameObject bullet = Instantiate(bulletLeftPrefab, leftFirepoints[i].position, leftFirepoints[i].rotation);
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -112,13 +125,24 @@ public class PlayerShooting : MonoBehaviour
 
         for (int i = 0; i < rightFirepoints.Length; i++)
         {
-            Quaternion rotation = Rotate(-60, rightFirepoints[i].rotation);
-            GameObject bullet = Instantiate(bulletRightPrefab, rightFirepoints[i].position, rightFirepoints[i].rotation);
-            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-            bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            if (i == 0)
+            {
+                Quaternion rotation = Rotate(-45, rightFirepoints[i].rotation);
+                GameObject bullet = Instantiate(bulletRightPrefab, rightFirepoints[i].position, rightFirepoints[i].rotation);
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            }
+            else
+            {
+                Quaternion rotation = Rotate(-60, rightFirepoints[i].rotation);
+                GameObject bullet = Instantiate(bulletRightPrefab, rightFirepoints[i].position, rightFirepoints[i].rotation);
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            }
         }
     }
 
+    // To rotate the bullet shooting angle
     Quaternion Rotate(float angle, Quaternion y)
     {
         Quaternion rotation = Quaternion.Euler(0, 0, angle) * y;
