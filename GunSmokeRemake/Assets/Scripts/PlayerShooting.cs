@@ -105,14 +105,14 @@ public class PlayerShooting : MonoBehaviour
         {
             if (i == 0)
             {
-                Quaternion rotation = Rotate(60, rightFirepoints[i].rotation);
+                Quaternion rotation = Rotate(60, leftFirepoints[i].rotation);
                 GameObject bullet = Instantiate(bulletLeftPrefab, leftFirepoints[i].position, leftFirepoints[i].rotation);
                 Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
                 bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
             }
             else
             {
-                Quaternion rotation = Rotate(45, rightFirepoints[i].rotation);
+                Quaternion rotation = Rotate(45, leftFirepoints[i].rotation);
                 GameObject bullet = Instantiate(bulletLeftPrefab, leftFirepoints[i].position, leftFirepoints[i].rotation);
                 Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
                 bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
