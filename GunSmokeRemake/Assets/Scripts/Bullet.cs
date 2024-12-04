@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float topBound = 30;
+    private float topBound = 10;
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < topBound)
+        if (transform.position.y > topBound)
         {
             gameObject.SetActive(false);
         }

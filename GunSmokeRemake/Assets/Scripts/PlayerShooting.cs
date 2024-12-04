@@ -62,19 +62,19 @@ public class PlayerShooting : MonoBehaviour
 
         if (fire1Pressed && fire2Pressed)
         {
-            ShootForward();
+            PoolForward();
             animator.SetBool("isShootingForward", true);
             fire1Pressed = fire2Pressed = false;
         }
         else if (fire1Pressed && !fire2Pressed && bufferOver)
         {
-            ShootLeft();
+            PoolLeft();
             animator.SetBool("isShootingLeft", true);
             fire1Pressed = false;
         }
         else if (fire2Pressed && !fire1Pressed && bufferOver)
         {
-            ShootRight();
+            PoolRight();
             animator.SetBool("isShootingRight", true);
             fire2Pressed = false;
         }
@@ -99,24 +99,65 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    void PoolForward()
+    {
+        for (int i = 0; i < forwardFirepoints.Length; i++)
+        {
+            GameObject bullet = ObjectPooler.sharedInstance.GetBullet();
+            if (bullet != null)
+            {
+                bullet.SetActive(true);
+                bullet.transform.position = forwardFirepoints[i].position;
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.AddForce(forwardFirepoints[i].up * bulletForce, ForceMode2D.Impulse);
+            }
+        }
+    }
+
+
     void ShootLeft()
     {
         for (int i = 0; i < leftFirepoints.Length; i++)
         {
             if (i == 0)
             {
-                Quaternion rotation = Rotate(60, rightFirepoints[i].rotation);
+                Quaternion rotation = Rotate(60, leftFirepoints[i].rotation);
                 GameObject bullet = Instantiate(bulletLeftPrefab, leftFirepoints[i].position, leftFirepoints[i].rotation);
                 Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
                 bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
             }
             else
             {
-                Quaternion rotation = Rotate(45, rightFirepoints[i].rotation);
+                Quaternion rotation = Rotate(45, leftFirepoints[i].rotation);
                 GameObject bullet = Instantiate(bulletLeftPrefab, leftFirepoints[i].position, leftFirepoints[i].rotation);
                 Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
                 bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
             }
+        }
+    }
+
+    void PoolLeft()
+    {
+        for (int i = 0; i < leftFirepoints.Length; i++)
+        {
+            GameObject bullet = ObjectPooler.sharedInstance.GetDiagonalBullet();
+            if (i == 0)
+            {
+                bullet.SetActive(true);
+                bullet.transform.position = leftFirepoints[i].position;
+                Quaternion rotation = Rotate(60, leftFirepoints[i].rotation);
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            }
+            else
+            {
+                bullet.SetActive(true);
+                bullet.transform.position = leftFirepoints[i].position;
+                Quaternion rotation = Rotate(45, leftFirepoints[i].rotation);
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            }
+
         }
     }
 
@@ -141,6 +182,34 @@ public class PlayerShooting : MonoBehaviour
             }
         }
     }
+
+    void PoolRight()
+    {
+        for (int i = 0; i < rightFirepoints.Length; i++)
+        {
+            GameObject bullet = ObjectPooler.sharedInstance.GetDiagonalBullet();
+            if (i == 0)
+            {
+                bullet.SetActive(true);
+                bullet.transform.position = rightFirepoints[i].position;
+                Quaternion rotation = Rotate(-45, rightFirepoints[i].rotation);
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            }
+            else
+            {
+                bullet.SetActive(true);
+                bullet.transform.position = rightFirepoints[i].position;
+                Quaternion rotation = Rotate(-60, rightFirepoints[i].rotation);
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+            }
+
+        }
+    }
+
+
+
 
     // To rotate the bullet shooting angle
     Quaternion Rotate(float angle, Quaternion y)
