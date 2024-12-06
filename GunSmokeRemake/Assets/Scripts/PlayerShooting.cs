@@ -93,9 +93,14 @@ public class PlayerShooting : MonoBehaviour
     {
         for (int i = 0; i < forwardFirepoints.Length; i++)
         {
-            GameObject bullet = Instantiate(bulletForwardPrefab, forwardFirepoints[i].position, forwardFirepoints[i].rotation);
-            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-            bulletRb.AddForce(forwardFirepoints[i].up * bulletForce, ForceMode2D.Impulse);
+            GameObject bullet = ObjectPooler.sharedInstance.GetBullet();
+            if (bullet != null)
+            {
+                bullet.SetActive(true);
+                bullet.transform.position = forwardFirepoints[i].position;
+                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+                bulletRb.AddForce(forwardFirepoints[i].up * bulletForce, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -103,51 +108,50 @@ public class PlayerShooting : MonoBehaviour
     {
         for (int i = 0; i < leftFirepoints.Length; i++)
         {
-            if (i == 0)
+            GameObject bullet = ObjectPooler.sharedInstance.GetDiagonalBullet();
+            if (i == 0 && bullet != null)
             {
-                Quaternion rotation = Rotate(60, leftFirepoints[i].rotation);
-                GameObject bullet = Instantiate(bulletLeftPrefab, leftFirepoints[i].position, leftFirepoints[i].rotation);
-                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+                FireBullet(bullet, leftFirepoints[i]);
             }
-            else
+            else if (i == 1 && bullet != null)
             {
-                Quaternion rotation = Rotate(45, leftFirepoints[i].rotation);
-                GameObject bullet = Instantiate(bulletLeftPrefab, leftFirepoints[i].position, leftFirepoints[i].rotation);
-                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+                FireBullet(bullet, leftFirepoints[i]);
             }
+
         }
     }
+
 
     void ShootRight()
     {
-
         for (int i = 0; i < rightFirepoints.Length; i++)
         {
-            if (i == 0)
+            GameObject bullet = ObjectPooler.sharedInstance.GetDiagonalBullet();
+            if (i == 0 && bullet != null)
             {
-                Quaternion rotation = Rotate(-45, rightFirepoints[i].rotation);
-                GameObject bullet = Instantiate(bulletRightPrefab, rightFirepoints[i].position, rightFirepoints[i].rotation);
-                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+                FireBullet(bullet, rightFirepoints[i]);
             }
-            else
+            else if (i == 1 && bullet != null)
             {
-                Quaternion rotation = Rotate(-60, rightFirepoints[i].rotation);
-                GameObject bullet = Instantiate(bulletRightPrefab, rightFirepoints[i].position, rightFirepoints[i].rotation);
-                Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-                bulletRb.AddForce(rotation * Vector2.up * bulletForce, ForceMode2D.Impulse);
+                FireBullet(bullet, rightFirepoints[i]);
             }
+
         }
     }
 
-    // To rotate the bullet shooting angle
-    Quaternion Rotate(float angle, Quaternion y)
+    void FireBullet(GameObject bullet, Transform firepoint)
     {
-        Quaternion rotation = Quaternion.Euler(0, 0, angle) * y;
-        return rotation;
+        bullet.SetActive(true);
+        bullet.transform.rotation = Quaternion.Euler(0, 0, 45);
+        bullet.transform.position = firepoint.position;
+
+        bullet.transform.rotation *= firepoint.rotation;
+
+        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+        bulletRb.velocity = Vector2.zero;
+        bulletRb.AddForce(firepoint.up * bulletForce, ForceMode2D.Impulse);
     }
+
 
 }
 
