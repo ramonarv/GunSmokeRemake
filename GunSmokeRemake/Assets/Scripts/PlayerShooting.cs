@@ -7,9 +7,6 @@ using UnityEngine.UIElements;
 public class PlayerShooting : MonoBehaviour
 {
     private float bulletForce = 20f;
-    public GameObject bulletForwardPrefab;
-    public GameObject bulletLeftPrefab;
-    public GameObject bulletRightPrefab;
     private Animator animator;
 
     public Transform forwardPoint1, forwardPoint2;

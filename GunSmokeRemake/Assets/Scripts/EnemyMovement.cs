@@ -7,16 +7,18 @@ public class EnemyMovement : MonoBehaviour
     public Transform target;
     public float speed;
     public float radius;
+    private Rigidbody2D rb;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector2 direction = target.position - transform.position;
         direction.Normalize();
@@ -24,15 +26,14 @@ public class EnemyMovement : MonoBehaviour
 
         if (Vector2.Distance(transform.position, target.position) > radius)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-            transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+            rb.velocity = direction * speed;
         }
 
         if (Vector2.Distance(transform.position, target.position) <= radius)
         {
-            transform.position += transform.up * speed * Time.deltaTime;
-            transform.rotation = Quaternion.Euler(Vector3.forward * angle);
+            rb.velocity = transform.up * speed;
         }
 
+        rb.rotation = angle;
     }
 }

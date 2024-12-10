@@ -15,12 +15,12 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<EnemyHealth>().TakeDamage(1);
+            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(1);
+            gameObject.SetActive(false);
         }
-        gameObject.SetActive(false);
     }
 }
