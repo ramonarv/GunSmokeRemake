@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float topBound = 10;
+    private float topBound = 5f;
     // Update is called once per frame
     void Update()
     {
