@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         {  transform.position = new Vector2(transform.position.x, -verticalBound);}
 
         if (transform.position.y > verticalBound)
-        {  transform.position = new Vector2(transform.position.x, -verticalBound);}
+        {  transform.position = new Vector2(transform.position.x, verticalBound);}
 
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
