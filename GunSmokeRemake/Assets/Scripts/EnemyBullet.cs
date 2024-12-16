@@ -29,7 +29,7 @@ public class EnemyBullet : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            Debug.Log("You got hit NOOB");
+            Debug.Log("Oh my god you got shot");
         }
     }
 }

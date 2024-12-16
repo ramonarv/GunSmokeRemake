@@ -7,12 +7,15 @@ public class EnemyHealth : MonoBehaviour
 
     public int maxHealth = 5;
     public int currentHealth;
-    private Animator animator;
-    private EnemyShooting movementScript;
+    private EnemyMovement movementScript;
+    private EnemyShooting shootingScript;
+    private bool isDead = false;
 
     private Material matWhite;
     private Material matDefault;
     private SpriteRenderer sr;
+
+    public GameObject corpsePrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +23,8 @@ public class EnemyHealth : MonoBehaviour
         sr = GetComponentInChildren<SpriteRenderer>();
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
         matDefault = sr.material;
-        animator = GetComponentInChildren<Animator>();
-        movementScript = GetComponentInChildren<EnemyShooting>();
+        movementScript = GetComponentInChildren<EnemyMovement>();
+        shootingScript = GetComponentInChildren<EnemyShooting>();
     }
 
     // Update is called once per frame
@@ -32,6 +35,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (isDead) return;
+
         currentHealth -= amount;
         sr.material = matWhite;
         if (currentHealth <= 0)
@@ -48,21 +53,34 @@ public class EnemyHealth : MonoBehaviour
 
     public void Die()
     {
-        animator.SetTrigger("Die");
+        if (isDead) return;
+        isDead = true;
 
-        EnemyMovement movementScript = GetComponent<EnemyMovement>();
+        Destroy(GetComponent<Rigidbody2D>());
+        Destroy(GetComponent<BoxCollider2D>());
+
+        // instantiating a separate corpse object to scroll along the level
+        GameObject corpse = null;
+        corpse = Instantiate(corpsePrefab, transform.position, Quaternion.identity);
+
+        ScoreManager.instance.AddPoint(50);
+
+        if (sr != null)
+        {
+            sr.enabled = false;
+        }
         if (movementScript != null)
         {
             movementScript.enabled = false;
         }
-        EnemyShooting shootingScript = GetComponent<EnemyShooting>();
         if (shootingScript != null)
         {
             shootingScript.enabled = false;
         }
-        Destroy(GetComponent<Rigidbody2D>());
-        Destroy(GetComponent<BoxCollider2D>());
-        Destroy(gameObject, 2);
+        
+        Destroy(corpse, 2f);
+        Destroy(gameObject, 2f);
+        
     }
 
     // reseting material to default

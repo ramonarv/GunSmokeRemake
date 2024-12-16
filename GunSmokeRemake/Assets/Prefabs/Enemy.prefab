@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   currentHealth: 0
-  corpsePrefab: {fileID: 8237261108024623845, guid: f27ae92a254c2ea488a7a4460b507ec1, type: 3}
+  corpsePrefab: {fileID: 311328405139801033, guid: bb7e8fa37e78cc3488b9c0de40de9b58, type: 3}
 --- !u!114 &7010892187016003731
 MonoBehaviour:
   m_ObjectHideFlags: 0

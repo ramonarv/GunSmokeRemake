@@ -41,4 +41,11 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = moveInput * moveSpeed;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Contact damage");
+        }
+    }
 }
