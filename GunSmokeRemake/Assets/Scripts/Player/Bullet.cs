@@ -19,7 +19,11 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<EnemyHealth>().TakeDamage(1);
+            EnemyHealth enemyHealth;
+            if (collision.gameObject.TryGetComponent<EnemyHealth>(out enemyHealth))
+            {
+                enemyHealth.TakeDamage(1);
+            }
             gameObject.SetActive(false);
         }
     }

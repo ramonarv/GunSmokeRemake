@@ -18,18 +18,4 @@ public class EnemyBullet : MonoBehaviour
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-            Debug.Log("Oh my god you got shot");
-        }
-    }
 }
