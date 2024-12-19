@@ -9,10 +9,10 @@ public class PlayerShooting : MonoBehaviour
     private float bulletForce = 20f;
     private Animator animator;
 
+    // firepoints variables
     public Transform forwardPoint1, forwardPoint2;
     public Transform leftPoint1, leftPoint2;
     public Transform rightPoint1, rightPoint2;
-
     Transform[] forwardFirepoints;
     Transform[] leftFirepoints;
     Transform[] rightFirepoints;
@@ -40,50 +40,52 @@ public class PlayerShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            fire1Pressed = true;
-            fire1LastTime = Time.time;
-        }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (!PauseMenu.gameIsPaused)
         {
-            fire2Pressed = true;
-            fire2LastTime = Time.time;
+            if (Input.GetButtonDown("Fire1"))
+            {
+                fire1Pressed = true;
+                fire1LastTime = Time.time;
+            }
+
+            if (Input.GetButtonDown("Fire2"))
+            {
+                fire2Pressed = true;
+                fire2LastTime = Time.time;
+            }
+
+            // Buffer timers for more consistent input detection (especially for LMB + RMB)
+            clickTime = Mathf.Abs(fire1LastTime - fire2LastTime);
+            bool bufferOver = (clickTime >= fireBufferTime);
+
+
+            if (fire1Pressed && fire2Pressed)
+            {
+                ShootForward();
+                animator.SetBool("isShootingForward", true);
+                fire1Pressed = fire2Pressed = false;
+            }
+            else if (fire1Pressed && !fire2Pressed && bufferOver)
+            {
+                ShootLeft();
+                animator.SetBool("isShootingLeft", true);
+                fire1Pressed = false;
+            }
+            else if (fire2Pressed && !fire1Pressed && bufferOver)
+            {
+                ShootRight();
+                animator.SetBool("isShootingRight", true);
+                fire2Pressed = false;
+            }
+            else
+            {
+                animator.SetBool("isShootingForward", false);
+                animator.SetBool("isShootingRight", false);
+                animator.SetBool("isShootingLeft", false);
+            }
         }
         
-        // Buffer timers for more consistent input detection (especially for LMB + RMB)
-        clickTime = Mathf.Abs(fire1LastTime - fire2LastTime);
-        bool bufferOver = (clickTime >= fireBufferTime);
-
-
-        if (fire1Pressed && fire2Pressed)
-        {
-            ShootForward();
-            animator.SetBool("isShootingForward", true);
-            fire1Pressed = fire2Pressed = false;
-        }
-        else if (fire1Pressed && !fire2Pressed && bufferOver)
-        {
-            ShootLeft();
-            animator.SetBool("isShootingLeft", true);
-            fire1Pressed = false;
-        }
-        else if (fire2Pressed && !fire1Pressed && bufferOver)
-        {
-            ShootRight();
-            animator.SetBool("isShootingRight", true);
-            fire2Pressed = false;
-        }
-        else
-        {
-            animator.SetBool("isShootingForward", false);
-            animator.SetBool("isShootingRight", false);
-            animator.SetBool("isShootingLeft", false);
-        }
-
-
-
     }
 
     void ShootForward()

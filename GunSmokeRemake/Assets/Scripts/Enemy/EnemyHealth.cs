@@ -16,6 +16,8 @@ public class EnemyHealth : MonoBehaviour
     private SpriteRenderer sr;
 
     public GameObject corpsePrefab;
+
+    private SpawnManager spawnManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,8 @@ public class EnemyHealth : MonoBehaviour
         matDefault = sr.material;
         movementScript = GetComponentInChildren<EnemyMovement>();
         shootingScript = GetComponentInChildren<EnemyShooting>();
+
+        spawnManager = FindObjectOfType<SpawnManager>();
     }
 
     // Update is called once per frame
@@ -77,6 +81,9 @@ public class EnemyHealth : MonoBehaviour
         {
             shootingScript.enabled = false;
         }
+
+        // telling spawnmanager that this enemy doesn't exist anymore
+        spawnManager.enemyCount.Remove(gameObject);
         
         Destroy(corpse, 2f);
         Destroy(gameObject, 2f);
@@ -88,4 +95,5 @@ public class EnemyHealth : MonoBehaviour
     {
         sr.material = matDefault;
     }
+
 }

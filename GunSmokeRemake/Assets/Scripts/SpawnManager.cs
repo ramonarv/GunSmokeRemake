@@ -6,9 +6,12 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
     private float startDelay = 2.0f;
-    private float enemyInterval = 4.0f;
+    private float enemyInterval = 2.0f;
     private float spawnRangeX = 5.0f;
     private float spawnPosY = 8.0f;
+
+    public List<GameObject> enemyCount = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +21,7 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        enemyCount.RemoveAll(enemy => enemy == null);
     }
 
     void SpawnEnemy()
@@ -26,6 +29,27 @@ public class SpawnManager : MonoBehaviour
         Vector2 spawnPos = new Vector2(Random.Range(-spawnRangeX, spawnRangeX), spawnPosY);
 
         int enemyIndex = Random.Range(0, enemyPrefabs.Length);
-        Instantiate(enemyPrefabs[enemyIndex], spawnPos, enemyPrefabs[enemyIndex].transform.rotation);
+        GameObject newEnemy = Instantiate(enemyPrefabs[enemyIndex], spawnPos, enemyPrefabs[enemyIndex].transform.rotation);
+
+        enemyCount.Add(newEnemy);
+        Debug.Log("Enemies on screen: " + enemyCount.Count);
+    }
+
+    public void DestroyAllEnemies()
+    {
+        foreach (GameObject enemy in enemyCount)
+        {
+            if (enemy != null)
+            {
+                Destroy(enemy);
+            }
+        }
+
+        enemyCount.Clear();
+    }
+
+    public void StopSpawning()
+    {
+        CancelInvoke();
     }
 }
