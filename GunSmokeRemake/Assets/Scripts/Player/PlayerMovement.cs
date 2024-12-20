@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     // keeping player within bounds
     private float verticalBound = 3.5f;
-    private float horizontalBound = 7.0f;
+    private float horizontalBound = 4.5f;
 
     // Start is called before the first frame update
     void Start()
