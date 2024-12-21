@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
 
-    public int maxHealth = 5;
-    public int currentHealth;
+    [SerializeField] int maxHealth = 5;
+    [SerializeField] int currentHealth;
     private EnemyMovement movementScript;
     private EnemyShooting shootingScript;
     private bool isDead = false;
@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour
     private Material matDefault;
     private SpriteRenderer sr;
 
-    public GameObject corpsePrefab;
+    [SerializeField] GameObject corpsePrefab;
 
     private SpawnManager spawnManager;
     // Start is called before the first frame update
@@ -67,7 +67,7 @@ public class EnemyHealth : MonoBehaviour
         GameObject corpse = null;
         corpse = Instantiate(corpsePrefab, transform.position, Quaternion.identity);
 
-        ScoreManager.instance.AddPoint(50);
+        ScoreManager.instance.AddPoint(100);
 
         if (sr != null)
         {

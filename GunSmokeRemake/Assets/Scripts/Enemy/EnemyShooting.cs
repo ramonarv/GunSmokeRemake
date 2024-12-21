@@ -5,14 +5,8 @@ using UnityEngine;
 public class EnemyShooting : MonoBehaviour
 {
     private float timer;
-    public Transform shootingPoint;
-    public GameObject bullet;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] Transform shootingPoint;
+    [SerializeField] GameObject bullet;
 
     // Update is called once per frame
     void Update()

@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class LevelScroller : MonoBehaviour
 {
-    public Sprite sprite;
-    public Transform[] tiles;
-    public float scrollSpeed;
-    public float tileHeight;
-    public float pixelsPerUnit;
+    [SerializeField] Sprite sprite;
+    [SerializeField] Transform[] tiles;
+    [SerializeField] float scrollSpeed;
+    [SerializeField] float tileHeight;
+    [SerializeField] float pixelsPerUnit;
 
 
     // Start is called before the first frame update

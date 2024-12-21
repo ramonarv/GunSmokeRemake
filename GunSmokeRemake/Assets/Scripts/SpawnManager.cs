@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject[] enemyPrefabs;
+    [SerializeField] GameObject[] enemyPrefabs;
     private float startDelay = 2.0f;
     private float enemyInterval = 2.0f;
-    private float spawnRangeX = 5.0f;
+    private float spawnRangeX = 4.5f;
     private float spawnPosY = 8.0f;
 
     public List<GameObject> enemyCount = new List<GameObject>();

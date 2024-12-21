@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    PlayerStatus status;
+
+    private void Awake()
+    {
+        status = GetComponent<PlayerStatus>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Contact damage");
-            PlayerStatus.instance.Death();
+            status.Death();
         }
     }
 
@@ -19,7 +25,7 @@ public class PlayerCollision : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Bullet damage");
-            PlayerStatus.instance.Death();
+            status.Death();
         }
     }
 

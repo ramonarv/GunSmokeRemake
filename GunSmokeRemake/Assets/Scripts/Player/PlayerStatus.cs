@@ -8,23 +8,15 @@ public class PlayerStatus : MonoBehaviour
     private PlayerMovement playerMovement;
     private SpawnManager spawnManager;
 
-    public static PlayerStatus instance;
-
     private void Awake()
     {
-        instance = this;
+        animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     void Start()
     {
-        animator = GetComponent<Animator>();
-        playerMovement = GetComponent<PlayerMovement>();
         spawnManager = FindObjectOfType<SpawnManager>();
-    }
-
-    void Update()
-    {
-        
     }
 
     public void Death()

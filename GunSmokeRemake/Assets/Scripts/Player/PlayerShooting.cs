@@ -8,11 +8,12 @@ public class PlayerShooting : MonoBehaviour
 {
     private float bulletForce = 20f;
     private Animator animator;
+    private ObjectPooler pooler;
 
     // firepoints variables
-    public Transform forwardPoint1, forwardPoint2;
-    public Transform leftPoint1, leftPoint2;
-    public Transform rightPoint1, rightPoint2;
+    [SerializeField] Transform forwardPoint1, forwardPoint2;
+    [SerializeField] Transform leftPoint1, leftPoint2;
+    [SerializeField] Transform rightPoint1, rightPoint2;
     Transform[] forwardFirepoints;
     Transform[] leftFirepoints;
     Transform[] rightFirepoints;
@@ -26,12 +27,16 @@ public class PlayerShooting : MonoBehaviour
     private float fireBufferTime = 0.15f;
     private float clickTime;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        pooler = FindObjectOfType<ObjectPooler>();
         forwardFirepoints = new Transform[] { forwardPoint1, forwardPoint2 };
         leftFirepoints = new Transform[] { leftPoint1, leftPoint2 };
         rightFirepoints = new Transform[] { rightPoint1, rightPoint2 };
@@ -92,7 +97,7 @@ public class PlayerShooting : MonoBehaviour
     {
         for (int i = 0; i < forwardFirepoints.Length; i++)
         {
-            GameObject bullet = ObjectPooler.sharedInstance.GetBullet();
+            GameObject bullet = pooler.GetBullet();
             if (bullet != null)
             {
                 bullet.SetActive(true);
@@ -107,7 +112,7 @@ public class PlayerShooting : MonoBehaviour
     {
         for (int i = 0; i < leftFirepoints.Length; i++)
         {
-            GameObject bullet = ObjectPooler.sharedInstance.GetDiagonalBullet();
+            GameObject bullet = pooler.GetDiagonalBullet();
             if (i == 0 && bullet != null)
             {
                 FireBullet(bullet, leftFirepoints[i]);
@@ -125,7 +130,7 @@ public class PlayerShooting : MonoBehaviour
     {
         for (int i = 0; i < rightFirepoints.Length; i++)
         {
-            GameObject bullet = ObjectPooler.sharedInstance.GetDiagonalBullet();
+            GameObject bullet = pooler.GetDiagonalBullet();
             if (i == 0 && bullet != null)
             {
                 FireBullet(bullet, rightFirepoints[i]);

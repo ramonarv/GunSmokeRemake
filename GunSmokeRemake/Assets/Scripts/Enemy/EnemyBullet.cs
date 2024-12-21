@@ -6,12 +6,16 @@ public class EnemyBullet : MonoBehaviour
 {
     private GameObject player;
     private Rigidbody2D rb;
-    public float force;
+    private float force = 7f;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 
         Vector2 direction = player.transform.position - transform.position;

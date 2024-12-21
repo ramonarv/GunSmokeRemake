@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    public Transform target;
-    public float speed;
-    public float radius;
+    [SerializeField] Transform target;
+    [SerializeField] float speed;
+    [SerializeField] float radius;
+    private float horizontalBound = 4.5f;
     private Rigidbody2D rb;
     private Animator animator;
 
-
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
@@ -36,6 +39,12 @@ public class EnemyMovement : MonoBehaviour
         {
             rb.velocity = transform.up * speed;
         }
+
+        if (transform.position.x < -horizontalBound)
+        { transform.position = new Vector2(-horizontalBound, transform.position.y); }
+
+        if (transform.position.x > horizontalBound)
+        { transform.position = new Vector2(horizontalBound, transform.position.y); }
 
         rb.rotation = angle;
         // chaning enemy animation based on current direction

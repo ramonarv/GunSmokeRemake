@@ -6,14 +6,13 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 moveInput;
-    public float moveSpeed;
+    [SerializeField] float moveSpeed;
 
     // keeping player within bounds
     private float verticalBound = 3.5f;
     private float horizontalBound = 4.5f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }

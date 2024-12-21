@@ -4,17 +4,12 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPooler sharedInstance;
     public List<GameObject> pooledBullets;
     public List<GameObject> pooledDiagonalBullets;
     public GameObject bulletToPool;
     public GameObject diagonalBulletToPool;
     public int amountToPool;
 
-    void Awake()
-    {
-        sharedInstance = this;
-    }
 
     void Start()
     {
