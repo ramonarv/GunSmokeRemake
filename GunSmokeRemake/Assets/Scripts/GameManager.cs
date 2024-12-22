@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
+    public int playerLives = 3;
+    public int livesDefault = 3;
     private void Awake()
     {
         if (instance == null)
@@ -17,13 +18,25 @@ public class GameManager : MonoBehaviour
     }
     public void EndGame()
     {
-        Debug.Log("GAME OVER");
-        StartCoroutine("RestartGame");
+        if (playerLives >= 0)
+        {
+            StartCoroutine("ContinueGame");
+        }
+        else
+        {
+            StartCoroutine("GameOver");
+        }
     }
 
-    IEnumerator RestartGame()
+    IEnumerator GameOver()
     {
         yield return new WaitForSecondsRealtime(4);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("GameOver");
+    }
+
+    IEnumerator ContinueGame()
+    {
+        yield return new WaitForSecondsRealtime(4);
+        SceneManager.LoadScene("LivesScreen");
     }
 }

@@ -484,6 +484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f8ae63ac02539489a3da6baede2795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerLives: 3
+  livesDefault: 3
 --- !u!4 &510044635
 Transform:
   m_ObjectHideFlags: 0
@@ -819,7 +821,6 @@ GameObject:
   - component: {fileID: 922702448}
   - component: {fileID: 922702447}
   - component: {fileID: 922702446}
-  - component: {fileID: 922702445}
   - component: {fileID: 922702450}
   m_Layer: 5
   m_Name: Canvas
@@ -828,19 +829,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &922702445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922702444}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4bf9d404724db1478c3bc974f78364b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1792203858}
 --- !u!114 &922702446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,6 +1094,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1032072748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1032072750}
+  - component: {fileID: 1032072749}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1032072749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032072748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4bf9d404724db1478c3bc974f78364b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1792203858}
+--- !u!4 &1032072750
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032072748}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1072.19, y: 539.8194, z: -9.069121}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1117671178
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1546,7 @@ GameObject:
   - component: {fileID: 1792203859}
   - component: {fileID: 1792203858}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1911,6 +1944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42fa0584dde46d1418e47f9c5a9d96e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerDead: 0
 --- !u!1 &1945233163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,3 +2221,4 @@ SceneRoots:
   - {fileID: 373978287}
   - {fileID: 922702449}
   - {fileID: 1503945702}
+  - {fileID: 1032072750}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -9,13 +10,15 @@ public class ScoreManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
-    int score = 0;
+    public int score = 0;
+    public int scoreDefault = 0;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject); 
         }
         else { Destroy(gameObject); }
     }
@@ -23,12 +26,29 @@ public class ScoreManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = "SCORE: " + score.ToString();
+        if (scoreText != null)
+        {
+            scoreText.text = "SCORE: " + score.ToString();
+        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     public void AddPoint(int pointValue)
     {
         score += pointValue;
         scoreText.text = "SCORE: " + score.ToString();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        GameObject canvas = GameObject.Find("Canvas");
+
+        TextMeshProUGUI textObject = canvas.transform.Find("ScoreText")?.GetComponent<TextMeshProUGUI>();
+
+        if (textObject != null)
+        {
+            scoreText = textObject;
+            scoreText.text = "SCORE: " + score.ToString();
+        }
     }
 }

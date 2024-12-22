@@ -4,12 +4,23 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
+    public bool isPlayerDead = false;
+
     private Animator animator;
     private PlayerMovement playerMovement;
     private SpawnManager spawnManager;
 
+    public static PlayerStatus instance;
+
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else { Destroy(gameObject); }
+
+        isPlayerDead = false;
         animator = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
     }
@@ -21,7 +32,10 @@ public class PlayerStatus : MonoBehaviour
 
     public void Death()
     {
+        isPlayerDead = true;
         animator.SetTrigger("Die");
+        GameManager.instance.playerLives -= 1;
+
         playerMovement.StopMovement();
         playerMovement.enabled = false;
         GetComponent<PlayerShooting>().enabled = false;

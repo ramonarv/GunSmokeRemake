@@ -10,10 +10,12 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUi;
 
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+
+        if (!PlayerStatus.instance.isPlayerDead && Input.GetKeyDown(KeyCode.Escape))
         {
             if (gameIsPaused)
             {
@@ -24,6 +26,7 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+
     }
 
     public void Resume()
@@ -42,6 +45,10 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        GameManager.instance.playerLives = GameManager.instance.livesDefault;
+        ScoreManager.instance.score = ScoreManager.instance.scoreDefault;
+        Time.timeScale = 1.0f;
+        gameIsPaused = false;
         SceneManager.LoadScene("MainMenu");
     }
 

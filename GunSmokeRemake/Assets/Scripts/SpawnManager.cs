@@ -32,7 +32,6 @@ public class SpawnManager : MonoBehaviour
         GameObject newEnemy = Instantiate(enemyPrefabs[enemyIndex], spawnPos, enemyPrefabs[enemyIndex].transform.rotation);
 
         enemyCount.Add(newEnemy);
-        Debug.Log("Enemies on screen: " + enemyCount.Count);
     }
 
     public void DestroyAllEnemies()

@@ -6,15 +6,13 @@ public class CorpseScroller : MonoBehaviour
 {
     private float scrollSpeed = 2f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
+        if (PlayerStatus.instance.isPlayerDead)
+        {
+            Destroy(gameObject);
+        }
         transform.Translate(Vector2.down * Time.deltaTime * scrollSpeed);
     }
 }

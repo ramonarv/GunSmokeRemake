@@ -18,6 +18,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject corpsePrefab;
 
     private SpawnManager spawnManager;
+    private PlayerStatus playerStatus;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class EnemyHealth : MonoBehaviour
         shootingScript = GetComponentInChildren<EnemyShooting>();
 
         spawnManager = FindObjectOfType<SpawnManager>();
+        playerStatus = FindObjectOfType<PlayerStatus>(); 
     }
 
     // Update is called once per frame
@@ -64,6 +66,7 @@ public class EnemyHealth : MonoBehaviour
         Destroy(GetComponent<BoxCollider2D>());
 
         // instantiating a separate corpse object to scroll along the level
+
         GameObject corpse = null;
         corpse = Instantiate(corpsePrefab, transform.position, Quaternion.identity);
 
@@ -85,7 +88,10 @@ public class EnemyHealth : MonoBehaviour
         // telling spawnmanager that this enemy doesn't exist anymore
         spawnManager.enemyCount.Remove(gameObject);
         
-        Destroy(corpse, 2f);
+        if (corpse != null)
+        {
+            Destroy(corpse, 2f);
+        }
         Destroy(gameObject, 2f);
         
     }
