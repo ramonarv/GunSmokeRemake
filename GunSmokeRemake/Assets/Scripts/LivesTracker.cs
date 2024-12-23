@@ -18,7 +18,7 @@ public class LivesTracker : MonoBehaviour
 
     IEnumerator ContinueGame()
     {
-        yield return new WaitForSecondsRealtime(4);
+        yield return new WaitForSecondsRealtime(2);
         SceneManager.LoadScene("Level1");
     }
 }

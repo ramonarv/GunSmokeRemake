@@ -16,9 +16,15 @@ public class PlayerCollision : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
-        {;
+        {
             PlayerStatus.instance.Death();
         }
+
+        if (collision.gameObject.CompareTag("ScoreUp"))
+        {
+            ScoreManager.instance.AddPoint(1000);
+        }
+
     }
 
 }

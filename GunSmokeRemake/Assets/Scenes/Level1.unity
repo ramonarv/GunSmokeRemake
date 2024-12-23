@@ -486,6 +486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLives: 3
   livesDefault: 3
+  highScore: 0
 --- !u!4 &510044635
 Transform:
   m_ObjectHideFlags: 0
@@ -1124,6 +1125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1792203858}
+  score: 0
+  scoreDefault: 0
 --- !u!4 &1032072750
 Transform:
   m_ObjectHideFlags: 0
