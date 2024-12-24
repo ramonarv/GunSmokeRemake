@@ -8,6 +8,7 @@ TagManager:
   - ScoreUp
   - DamageUp
   - SpeedUp
+  - Barrel
   layers:
   - Default
   - TransparentFX

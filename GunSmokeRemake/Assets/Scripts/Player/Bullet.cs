@@ -28,5 +28,15 @@ public class Bullet : MonoBehaviour
             }
             gameObject.SetActive(false);
         }
+
+        if (collision.gameObject.CompareTag("Barrel"))
+        {
+            Barrel barrel;
+            if (collision.gameObject.TryGetComponent<Barrel>(out barrel))
+            {
+                barrel.TakeDamage(damage);
+            }
+            gameObject.SetActive(false);
+        }
     }
 }

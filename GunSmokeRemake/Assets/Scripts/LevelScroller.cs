@@ -24,13 +24,15 @@ public class LevelScroller : MonoBehaviour
     {
         for (int i = 0; i < tiles.Length; i++)
         {
-
+            // placing tile above the topmost tile
             if (tiles[i].transform.position.y < -tileHeight)
             {
                 float highestY = GetHighestTileY();
                 tiles[i].transform.position = new Vector2(
                     tiles[i].transform.position.x,
                     highestY + tileHeight);
+
+                SetAllChildrenActive(tiles[i]);
             }
 
             tiles[i].transform.Translate(Vector2.down * Time.deltaTime * scrollSpeed);
@@ -48,6 +50,14 @@ public class LevelScroller : MonoBehaviour
             }
         }
         return highestY;
+    }
+
+    void SetAllChildrenActive(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            child.gameObject.SetActive(true);
+        }
     }
 
 }

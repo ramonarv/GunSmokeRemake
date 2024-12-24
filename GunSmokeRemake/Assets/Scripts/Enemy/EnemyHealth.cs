@@ -16,6 +16,7 @@ public class EnemyHealth : MonoBehaviour
     private SpriteRenderer sr;
 
     [SerializeField] GameObject corpsePrefab;
+    [SerializeField] GameObject[] powerUps;
 
     private SpawnManager spawnManager;
     private PlayerStatus playerStatus;
@@ -30,13 +31,6 @@ public class EnemyHealth : MonoBehaviour
         shootingScript = GetComponentInChildren<EnemyShooting>();
 
         spawnManager = FindObjectOfType<SpawnManager>();
-        playerStatus = FindObjectOfType<PlayerStatus>(); 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void TakeDamage(int amount)
@@ -62,6 +56,7 @@ public class EnemyHealth : MonoBehaviour
         if (isDead) return;
         isDead = true;
 
+        GeneratePickup();
         Destroy(GetComponent<Rigidbody2D>());
         Destroy(GetComponent<BoxCollider2D>());
 
@@ -100,6 +95,18 @@ public class EnemyHealth : MonoBehaviour
     private void ResetMaterial()
     {
         sr.material = matDefault;
+    }
+
+    private void GeneratePickup()
+    {
+        int roll = Random.Range(0, 11);
+        Debug.Log("Roll is: " + roll);
+        if (roll == 10)
+        {
+            GameObject pickup = powerUps[Random.Range(0, powerUps.Length)];
+            Debug.Log("Generating pickup: " + pickup);
+            Instantiate(pickup, transform.position, Quaternion.identity);
+        }
     }
 
 }

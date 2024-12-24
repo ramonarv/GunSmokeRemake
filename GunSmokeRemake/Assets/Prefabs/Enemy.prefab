@@ -219,6 +219,10 @@ MonoBehaviour:
   maxHealth: 5
   currentHealth: 0
   corpsePrefab: {fileID: 311328405139801033, guid: bb7e8fa37e78cc3488b9c0de40de9b58, type: 3}
+  powerUps:
+  - {fileID: 7787473169691104141, guid: 29290b1036de7984380df76300d0515c, type: 3}
+  - {fileID: 3005259735530391891, guid: 6570b30c6e25ab64fac7ba7ef59dd51b, type: 3}
+  - {fileID: 3005259735530391891, guid: 6570b30c6e25ab64fac7ba7ef59dd51b, type: 3}
 --- !u!114 &7010892187016003731
 MonoBehaviour:
   m_ObjectHideFlags: 0
