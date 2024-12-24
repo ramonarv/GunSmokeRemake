@@ -6,9 +6,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private float topBound = 5f;
+    private int damage;
     // Update is called once per frame
     void Update()
     {
+        damage = PlayerStatus.instance.playerDamage;
         if (transform.position.y > topBound)
         {
             gameObject.SetActive(false);
@@ -22,7 +24,7 @@ public class Bullet : MonoBehaviour
             EnemyHealth enemyHealth;
             if (collision.gameObject.TryGetComponent<EnemyHealth>(out enemyHealth))
             {
-                enemyHealth.TakeDamage(1);
+                enemyHealth.TakeDamage(damage);
             }
             gameObject.SetActive(false);
         }

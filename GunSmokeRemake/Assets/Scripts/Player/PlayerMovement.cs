@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 moveInput;
-    [SerializeField] float moveSpeed;
+    [SerializeField] int moveSpeed;
 
     // keeping player within bounds
     private float verticalBound = 3.5f;
@@ -15,6 +15,11 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        moveSpeed = PlayerStatus.instance.playerSpeed;
     }
 
     // Update is called once per frame
@@ -38,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
         moveInput.Normalize();
 
         rb.velocity = moveInput * moveSpeed;
+
+        moveSpeed = PlayerStatus.instance.playerSpeed;
     }
 
     public void StopMovement()

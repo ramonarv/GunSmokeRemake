@@ -25,6 +25,15 @@ public class PlayerCollision : MonoBehaviour
             ScoreManager.instance.AddPoint(1000);
         }
 
+        if (collision.gameObject.CompareTag("DamageUp"))
+        {
+            PlayerStatus.instance.playerDamage += 1;
+        }
+
+        if (collision.gameObject.CompareTag("SpeedUp"))
+        {
+            PlayerStatus.instance.playerSpeed += 1;
+        }
     }
 
 }

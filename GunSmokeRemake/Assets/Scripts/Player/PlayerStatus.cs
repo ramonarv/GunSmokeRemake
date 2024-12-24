@@ -6,6 +6,9 @@ public class PlayerStatus : MonoBehaviour
 {
     public bool isPlayerDead = false;
 
+    public int playerSpeed = 5;
+    public int playerDamage = 1;
+
     private Animator animator;
     private PlayerMovement playerMovement;
     private SpawnManager spawnManager;
@@ -28,6 +31,19 @@ public class PlayerStatus : MonoBehaviour
     void Start()
     {
         spawnManager = FindObjectOfType<SpawnManager>();
+    }
+
+    private void Update()
+    {
+        if (playerDamage > 4)
+        {
+            playerDamage = 4;
+        }
+
+        if (playerSpeed > 8)
+        {
+            playerSpeed = 8;
+        }
     }
 
     public void Death()
