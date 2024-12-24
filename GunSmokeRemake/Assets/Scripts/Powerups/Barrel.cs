@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Barrel : MonoBehaviour
 {
-    [SerializeField] int maxHealth = 15;
+    [SerializeField] int maxHealth = 10;
     [SerializeField] int currentHealth;
 
     [SerializeField] GameObject[] powerUps;

@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class ShotgunEnemyHealth : MonoBehaviour
 {
-
-    [SerializeField] int maxHealth = 5;
+    [SerializeField] int maxHealth = 10;
     [SerializeField] int currentHealth;
-    private EnemyMovement movementScript;
-    private EnemyShooting shootingScript;
+    private ShotgunEnemyMovement movementScript;
+    private ShotgunEnemyShooting shootingScript;
     private bool isDead = false;
 
     private Material matWhite;
@@ -19,15 +18,16 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject[] powerUps;
 
     private SpawnManager spawnManager;
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
-        sr = GetComponentInChildren<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
         matDefault = sr.material;
-        movementScript = GetComponentInChildren<EnemyMovement>();
-        shootingScript = GetComponentInChildren<EnemyShooting>();
+        movementScript = GetComponent<ShotgunEnemyMovement>();
+        shootingScript = GetComponent<ShotgunEnemyShooting>();
 
         spawnManager = FindObjectOfType<SpawnManager>();
     }
@@ -50,6 +50,21 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    private void ResetMaterial()
+    {
+        sr.material = matDefault;
+    }
+
+    private void GeneratePickup()
+    {
+        int roll = Random.Range(0, 6);
+        if (roll == 5)
+        {
+            GameObject pickup = powerUps[Random.Range(0, powerUps.Length)];
+            Instantiate(pickup, transform.position, Quaternion.identity);
+        }
+    }
+
     public void Die()
     {
         if (isDead) return;
@@ -64,7 +79,7 @@ public class EnemyHealth : MonoBehaviour
         GameObject corpse = null;
         corpse = Instantiate(corpsePrefab, transform.position, Quaternion.identity);
 
-        ScoreManager.instance.AddPoint(100);
+        ScoreManager.instance.AddPoint(400);
 
         if (sr != null)
         {
@@ -81,29 +96,12 @@ public class EnemyHealth : MonoBehaviour
 
         // telling spawnmanager that this enemy doesn't exist anymore
         spawnManager.enemyCount.Remove(gameObject);
-        
+
         if (corpse != null)
         {
             Destroy(corpse, 2f);
         }
         Destroy(gameObject, 2f);
-        
-    }
-
-    // reseting material to default
-    private void ResetMaterial()
-    {
-        sr.material = matDefault;
-    }
-
-    private void GeneratePickup()
-    {
-        int roll = Random.Range(0, 11);
-        if (roll == 10)
-        {
-            GameObject pickup = powerUps[Random.Range(0, powerUps.Length)];
-            Instantiate(pickup, transform.position, Quaternion.identity);
-        }
     }
 
 }

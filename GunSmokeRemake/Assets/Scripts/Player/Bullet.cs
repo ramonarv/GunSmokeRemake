@@ -29,6 +29,16 @@ public class Bullet : MonoBehaviour
             gameObject.SetActive(false);
         }
 
+        if (collision.gameObject.CompareTag("ShotgunEnemy"))
+        {
+            ShotgunEnemyHealth enemyHealth;
+            if (collision.gameObject.TryGetComponent<ShotgunEnemyHealth>(out enemyHealth))
+            {
+                enemyHealth.TakeDamage(damage);
+            }
+            gameObject.SetActive(false);
+        }
+
         if (collision.gameObject.CompareTag("Barrel"))
         {
             Barrel barrel;

@@ -9,6 +9,7 @@ TagManager:
   - DamageUp
   - SpeedUp
   - Barrel
+  - ShotgunEnemy
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Barrel
   - Player
   - Enemy
   - Bullet
