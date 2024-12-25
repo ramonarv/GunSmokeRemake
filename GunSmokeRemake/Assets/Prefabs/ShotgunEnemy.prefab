@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6be87999aa6e6848a7cb07abc7bd93b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 8
   currentHealth: 0
   corpsePrefab: {fileID: 2392997997019081294, guid: a0774d98411f35b499b0626b4857ed30, type: 3}
   powerUps:

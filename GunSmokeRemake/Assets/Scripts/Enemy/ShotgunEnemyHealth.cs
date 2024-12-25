@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShotgunEnemyHealth : MonoBehaviour
 {
-    [SerializeField] int maxHealth = 10;
+    [SerializeField] int maxHealth = 8;
     [SerializeField] int currentHealth;
     private ShotgunEnemyMovement movementScript;
     private ShotgunEnemyShooting shootingScript;

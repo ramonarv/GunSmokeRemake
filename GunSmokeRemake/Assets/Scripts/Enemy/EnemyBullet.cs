@@ -6,7 +6,7 @@ public class EnemyBullet : MonoBehaviour
 {
     private GameObject player;
     private Rigidbody2D rb;
-    private float force = 7f;
+    private float force = 6f;
 
     private void Awake()
     {

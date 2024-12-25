@@ -6,7 +6,7 @@ public class ShotgunEnemyMovement : MonoBehaviour
 {
     private float minMoveDistance = 5f;
     private float maxMoveDistance = 8f;
-    private float moveSpeed = 2f;
+    private float moveSpeed = 4f;
 
     private Rigidbody2D rb;
     private Vector2 startPosition;
