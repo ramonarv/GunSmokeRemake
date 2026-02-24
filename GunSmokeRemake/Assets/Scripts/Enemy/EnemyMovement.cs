@@ -31,13 +31,13 @@ public class EnemyMovement : MonoBehaviour
 
         if (Vector2.Distance(transform.position, target.position) > radius)
         {
-            rb.velocity = direction * speed;
+            rb.linearVelocity = direction * speed;
         }
 
         // if close enough to the player's radius, start orbiting around the player
         if (Vector2.Distance(transform.position, target.position) <= radius)
         {
-            rb.velocity = transform.up * speed;
+            rb.linearVelocity = transform.up * speed;
         }
 
         if (transform.position.x < -horizontalBound)

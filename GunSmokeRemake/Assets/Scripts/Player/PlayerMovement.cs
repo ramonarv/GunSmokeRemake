@@ -42,13 +42,13 @@ public class PlayerMovement : MonoBehaviour
 
         moveInput.Normalize();
 
-        rb.velocity = moveInput * moveSpeed;
+        rb.linearVelocity = moveInput * moveSpeed;
 
         moveSpeed = PlayerStatus.instance.playerSpeed;
     }
 
     public void StopMovement()
     {
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
     }
 }

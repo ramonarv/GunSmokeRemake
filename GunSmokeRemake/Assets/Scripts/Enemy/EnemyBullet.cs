@@ -19,7 +19,7 @@ public class EnemyBullet : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         Vector2 direction = player.transform.position - transform.position;
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+        rb.linearVelocity = new Vector2(direction.x, direction.y).normalized * force;
     }
 
 }

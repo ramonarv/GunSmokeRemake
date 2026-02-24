@@ -15,7 +15,7 @@ public class ShotgunBullet : MonoBehaviour
     void Start()
     {
         Vector2 direction = -transform.up;
-        rb.velocity = direction * force;
+        rb.linearVelocity = direction * force;
     }
 
 }

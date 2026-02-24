@@ -152,7 +152,7 @@ public class PlayerShooting : MonoBehaviour
         bullet.transform.rotation *= firepoint.rotation;
 
         Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-        bulletRb.velocity = Vector2.zero;
+        bulletRb.linearVelocity = Vector2.zero;
         bulletRb.AddForce(firepoint.up * bulletForce, ForceMode2D.Impulse);
     }
 
